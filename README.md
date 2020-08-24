@@ -1,9 +1,6 @@
-# Imersão prática Inhalt!
+# IMERSÃO PRÁTICA - INHALT
 
-### Requisitos
-
----
-
+## Requisitos
 - Realizar login;
 - Listar os produtos cadastrado com um filtro;
 - Cadastrar novos produtos com nome, valor e quantidade em estoque;
@@ -13,9 +10,7 @@
 
 Obs: Não deve ser possível vender produtos que tenha zero no estoque.
 
-### Tecnologias
-
----
+## Tecnologias
 
 ##### FrontEnd
 - ReactJS
@@ -26,9 +21,8 @@ Obs: Não deve ser possível vender produtos que tenha zero no estoque.
 ##### Banco de dados
 - InMemory
 
-### Introdução
+## Introdução
 
----
 
 O sistema foi feito em ReactJS e Asp.NET Core sem o uso de um banco de dados relacional ou não relacional. Foi optado para uso de um banco de dados em memória, o próprio InMemory do entity framework, pela facilidade dele para prototipação de um projeto e por se aproximar de uma conexão com outros tipos de bancos de dados, assim podendo facilmente substituído por um banco sql.
 
@@ -40,9 +34,7 @@ Ao startar o sistema na página principal se encontrará um link escrito 'Teste'
 
 Para logar na aplicação a primeira vez utilize o usuário: Teste e a senha: teste@123
 
-### Desenvolvimento e dificuldades
-
----
+## Desenvolvimento e dificuldades
 
 ##### API
 No desenvolvimento da api teve uma dificuldade inicial, pois nunca tinha trabalhado com o Asp.NET Core. Porém a curva de aprendizado do mesmo é pequena e foi fácil de me adaptar em desenvolver nele. Foi entregue quase todos os requisitos solicitados para api, somente a parte de relatórios foi deixado em branco.
@@ -54,9 +46,8 @@ Porem por Asp.NET ser diferente do Node a mesma lógica não estava funcionando 
 ##### Frontend
 O frontend foi desenvolvido de modo simples e evitando de ficar sobrecarregado, como não tenho experiência como designer deve ter algo fora do UX e UI, porém a interface ta facil de usar.
 
-### Desenvolvedor
+## Desenvolvedor
 
----
 
 - [Gabriel Resende](https://github.com/Sprained "Gabriel Resende")
 
