@@ -24,28 +24,33 @@ Obs: Não deve ser possível vender produtos que tenha zero no estoque.
 
 ## Introdução
 
+O sistema foi feito em ReactJS e Asp.NET Core sem o uso de um banco de dados relacional ou não relacional. Foi optado para uso de um banco de dados em memória, o próprio InMemory do Entity Framework, pela facilidade dele para prototipação de um projeto e por se aproximar de uma conexão com outros tipos de bancos de dados, assim podendo facilmente substituído por um banco SQL.
 
-O sistema foi feito em ReactJS e Asp.NET Core sem o uso de um banco de dados relacional ou não relacional. Foi optado para uso de um banco de dados em memória, o próprio InMemory do entity framework, pela facilidade dele para prototipação de um projeto e por se aproximar de uma conexão com outros tipos de bancos de dados, assim podendo facilmente substituído por um banco sql.
+Iniciando a aplicação
 
-Para startar a api, tendo o dotnet sdk instalado na máquina, abra o terminal na pasta da api e digite o seguinte comando `dotnet run`.
+API
+Tendo o DOTNET SDK instalado na máquina, abra o terminal na pasta e digite o seguinte comando: `dotnet run`.
 
-Para startar o frontend, tendo o node instalado na máquina, abra o terminal na pasta do frontend e digite o seguinte comando `npm i` ou `yarn` para atualizar as dependências e `npm start` ou `yarn start` para startar o frontend.
+FRONT-END
+Tendo o NodeJs instalado na máquina, abra o terminal na pasta e digite o seguinte comando `npm i` ou `yarn` para atualizar as dependências e `npm start` ou `yarn start` para iniciar a aplicação.
 
-Ao startar o sistema na página principal se encontrará um link escrito 'Teste' ao clicar la ira popular o banco de dados InMemory para começar o uso, por motivos do banco de dados InMemory perder todos os dados após finalizar a api.
+Por motivos do banco de dados InMemory perder todos os dados após finalizar a aplicação, ao iniciar, por hora, o usuário deverá clicar num link, na página principal do sistema, escrito 'Teste', a fim de que o banco possa ser populado para uso. 
 
-Para logar na aplicação a primeira vez utilize o usuário: Teste e a senha: teste@123
+Para logar na aplicação na primeira vez utilize as credenciais: 
+Login: teste
+Senha: teste@123
 
 ## Comentarios de desenvolvimento
 
 ##### API
-No desenvolvimento da api teve uma dificuldade inicial, pois não tinha experiencia com o Asp.NET Core. Porém senti facilidade de aprender e me adaptar em desenvolver no mesmo. Foi entregue quase todos os requisitos solicitados para api, somente a parte de relatórios foi deixado em branco.
+Foram desenvolvidos na API os requisitos solicitados, com exceção da emissão do relatório para visualização dos itens vendidos com totalização.
 
-No relatório foi tentado fazer um relatório onde o usuário poderia baixar um arquivo em csv ou pdf, tentei seguir mesmo caminho que já fiz no node uma vez. Pegar as informações do banco de dados tratar a mesma num json, criando um array de cabeçalho servindo como filtro também para mostrar somente o solicitado e assim criando o arquivo num `fs.write` e disponibilizando um link onde o frontend iria requisitar o mesmo e assim retornar o arquivo para download.
+A lógica para os relatórios era pegar as informações do banco de dados tratar a mesma num json, criando um array de cabeçalho servindo como filtro também para mostrar somente o solicitado e assim criando o arquivo num `fs.write` e disponibilizando um link onde o frontend iria requisitar o mesmo e assim retornar o arquivo para download, uma vez que a utilizei em um projeto em NodeJS que fiz. Porém, a lógica do Node não se encaixou muito bem com o ASP.NET Core, e eu tinha receio de não ter tempo hábil para estudar e pensar numa solução cabível.
 
-A logica realizada no node não se encaixou no Asp.NET, tendo que contruir uma nova logic. Porem foi escolhido não entregar por receio de atrasar o desenvolvimento do resto do sistema. Mas algo o qual pode ser resolvido facilmente, só preciso pensar numa lógica que melhor adapte ao c# e caso necessário procurar alguma lib que possa ajudar na tarefa.
+No geral, a expectativa para o desenvolvimento da API não era tão boa, por não ter experiência no desenvolvimento com ASP.NET Core, porém consegui aprender e me adaptar mais rápido que esperava e entregar uma ótima parte da aplicação a tempo.
 
-##### Frontend
-O frontend foi desenvolvido de modo simples e evitando de ficar sobrecarregado, como não tenho experiência como designer deve ter algo fora do UX e UI, porém a interface ta facil de usar.
+##### Front-End
+Por não entender de designer (nem de UI/UX) e para evitar sobrecargas, o front-end foi desenvolvido com uma interface bem simples, porém amigável e de fácil utilização.
 
 ## Desenvolvedor
 
