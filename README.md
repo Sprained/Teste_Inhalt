@@ -1,4 +1,5 @@
 # IMERSÃO PRÁTICA - INHALT
+Projeto realizado para teste de seleção da Inhalt Soluções em Informática para a vaga de desenvolvedor!
 
 ## Requisitos
 - Realizar login;
@@ -6,7 +7,7 @@
 - Cadastrar novos produtos com nome, valor e quantidade em estoque;
 - Realizar uma venda, o qual consiste em selecionar o produto e a quantidade vendida;
 - Deve ser possível emitir um relatório para ser visualizado os itens vendidos com totalização;
-- Possibilidade de criar novos usuários para gerenciar o sistema ;
+- Possibilidade de criar novos usuários para gerenciar o sistema;
 
 Obs: Não deve ser possível vender produtos que tenha zero no estoque.
 
@@ -34,14 +35,14 @@ Ao startar o sistema na página principal se encontrará um link escrito 'Teste'
 
 Para logar na aplicação a primeira vez utilize o usuário: Teste e a senha: teste@123
 
-## Desenvolvimento e dificuldades
+## Comentarios de desenvolvimento
 
 ##### API
-No desenvolvimento da api teve uma dificuldade inicial, pois nunca tinha trabalhado com o Asp.NET Core. Porém a curva de aprendizado do mesmo é pequena e foi fácil de me adaptar em desenvolver nele. Foi entregue quase todos os requisitos solicitados para api, somente a parte de relatórios foi deixado em branco.
+No desenvolvimento da api teve uma dificuldade inicial, pois não tinha experiencia com o Asp.NET Core. Porém senti facilidade de aprender e me adaptar em desenvolver no mesmo. Foi entregue quase todos os requisitos solicitados para api, somente a parte de relatórios foi deixado em branco.
 
 No relatório foi tentado fazer um relatório onde o usuário poderia baixar um arquivo em csv ou pdf, tentei seguir mesmo caminho que já fiz no node uma vez. Pegar as informações do banco de dados tratar a mesma num json, criando um array de cabeçalho servindo como filtro também para mostrar somente o solicitado e assim criando o arquivo num `fs.write` e disponibilizando um link onde o frontend iria requisitar o mesmo e assim retornar o arquivo para download.
 
-Porem por Asp.NET ser diferente do Node a mesma lógica não estava funcionando então preferi deixar em branco para focar no resto do sistema e depois voltava nisso. Mas algo o qual pode ser resolvido facilmente, só preciso pensar numa lógica que melhor adapte ao c# e caso necessário procurar alguma lib que possa ajudar na tarefa.
+A logica realizada no node não se encaixou no Asp.NET, tendo que contruir uma nova logic. Porem foi escolhido não entregar por receio de atrasar o desenvolvimento do resto do sistema. Mas algo o qual pode ser resolvido facilmente, só preciso pensar numa lógica que melhor adapte ao c# e caso necessário procurar alguma lib que possa ajudar na tarefa.
 
 ##### Frontend
 O frontend foi desenvolvido de modo simples e evitando de ficar sobrecarregado, como não tenho experiência como designer deve ter algo fora do UX e UI, porém a interface ta facil de usar.
