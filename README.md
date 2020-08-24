@@ -46,7 +46,9 @@ Para logar na aplicação a primeira vez utilize o usuário: Teste e a senha: te
 
 ##### API
 No desenvolvimento da api teve uma dificuldade inicial, pois nunca tinha trabalhado com o Asp.NET Core. Porém a curva de aprendizado do mesmo é pequena e foi fácil de me adaptar em desenvolver nele. Foi entregue quase todos os requisitos solicitados para api, somente a parte de relatórios foi deixado em branco.
+
 No relatório foi tentado fazer um relatório onde o usuário poderia baixar um arquivo em csv ou pdf, tentei seguir mesmo caminho que já fiz no node uma vez. Pegar as informações do banco de dados tratar a mesma num json, criando um array de cabeçalho servindo como filtro também para mostrar somente o solicitado e assim criando o arquivo num `fs.write` e disponibilizando um link onde o frontend iria requisitar o mesmo e assim retornar o arquivo para download.
+
 Porem por Asp.NET ser diferente do Node a mesma lógica não estava funcionando então preferi deixar em branco para focar no resto do sistema e depois voltava nisso. Mas algo o qual pode ser resolvido facilmente, só preciso pensar numa lógica que melhor adapte ao c# e caso necessário procurar alguma lib que possa ajudar na tarefa.
 
 ##### Frontend
