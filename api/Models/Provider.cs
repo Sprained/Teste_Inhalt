@@ -11,7 +11,7 @@ namespace api.Models
         public string name { get; set; }
 
         [Required(ErrorMessage = "Campo de telefone do fornecedor é obrigatorio!")]
-        public int phone { get; set; }
+        public long phone { get; set; }
 
         [Required(ErrorMessage = "Campo de email do fornecedor é obrigatorio!")]
         [EmailAddress(ErrorMessage = "Email informado com error")]

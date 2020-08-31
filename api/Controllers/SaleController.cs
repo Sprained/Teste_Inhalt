@@ -1,3 +1,4 @@
+using System.Text;
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -61,12 +62,31 @@ namespace api.Controllers
 
         [HttpGet]
         [Route("")]
-        [Authorize]
-        public async Task<ActionResult<List<Sale>>> Get([FromServices] DataContext context)
+        // [Authorize]
+        public async Task<ActionResult<dynamic>> Get([FromServices] DataContext context)
         {
             //Listar todas as compras feitas
             var sale = await context.sale.ToListAsync();
-            return sale;
+
+            //Tratando dados para arqiovo csv
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Id da Venda,Id do Produto,Valor do produto,Quantidade de produto\r\n");
+            float i = 0;
+            foreach(Sale s in sale){
+                var product = await context.product.Where(x => x.id == s.productId).SingleOrDefaultAsync();
+                
+                i += (s.amount * product.value);
+
+                sb.Append(
+                    s.id + "," + 
+                    s.productId + "," + 
+                    product.value + "," +
+                    s.amount + "\r\n"
+                    );
+            }
+            sb.Append("Valor total: " + i);
+            
+            return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", "vendas.csv");
         }
     }
 }

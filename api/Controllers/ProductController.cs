@@ -53,5 +53,37 @@ namespace api.Controllers
             var product = await context.product.Where(x => x.id == id).ToListAsync();
             return product;
         }
+
+        [HttpPut]
+        [Route("{id:int}")]
+        [Authorize]
+        public async Task<ActionResult<dynamic>> Put(
+            [FromServices] DataContext context,
+            [FromBody] Product model,
+            int id
+        )
+        {
+            //Verificar se dados seguem model
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var product = await context.product.Where(x => x.id == id).SingleOrDefaultAsync();
+
+            //verificar se produto ta cadastrado
+            if (product == null)
+            {
+                return BadRequest(new { messsage = "Produto não cadastrado!" });
+            }
+
+            //atualizar dados do produto
+            product.name = model.name;
+            product.value = model.value;
+            product.amount = model.amount;
+
+            await context.SaveChangesAsync();
+            return model;
+        }
     }
 }
