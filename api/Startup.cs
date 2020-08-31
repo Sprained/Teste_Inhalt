@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using api.Data;
+using Pomelo.EntityFrameworkCore.MySql;
 
 
 namespace api
@@ -32,7 +33,7 @@ namespace api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
+            services.AddDbContext<DataContext>(opt => opt.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<DataContext, DataContext>();
             services.AddControllers();
 

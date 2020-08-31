@@ -22,21 +22,16 @@ namespace api.Controllers
             [FromBody] Product model
             )
         {
+            //Verificação se os dados seguem o modelo
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            Product info = new Product()
-            {
-                name = model.name,
-                value = model.value,
-                amount = model.amount,
-                userId = User.Identity.Name
-            };
-            context.Products.Add(info);
+            //Add informações no banco de dados
+            context.product.Add(model);
             await context.SaveChangesAsync();
-            return info;
+            return model;
         }
 
         [HttpGet]
@@ -44,7 +39,8 @@ namespace api.Controllers
         [Authorize]
         public async Task<ActionResult<List<Product>>> Get([FromServices] DataContext context)
         {
-            var products = await context.Products.Where(x => x.userId == User.Identity.Name).ToListAsync();
+            //listar todos os produtos
+            var products = await context.product.ToListAsync();
             return products;
         }
 
@@ -53,7 +49,8 @@ namespace api.Controllers
         [Authorize]
         public async Task<ActionResult<List<Product>>> Item([FromServices] DataContext context, int id)
         {
-            var product = await context.Products.Where(x => x.userId == User.Identity.Name).Where(x => x.id == id).ToListAsync();
+            //Listar um unico produto pelo id
+            var product = await context.product.Where(x => x.id == id).ToListAsync();
             return product;
         }
     }

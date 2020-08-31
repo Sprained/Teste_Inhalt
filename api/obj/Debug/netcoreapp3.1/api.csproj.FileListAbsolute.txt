@@ -43,3 +43,8 @@ C:\Users\Men\Desktop\Dev\Teste_Inhalt\api\bin\Debug\netcoreapp3.1\Microsoft.Iden
 C:\Users\Men\Desktop\Dev\Teste_Inhalt\api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Men\Desktop\Dev\Teste_Inhalt\api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\Men\Desktop\Dev\Teste_Inhalt\api\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Men\Desktop\Dev\Teste_Inhalt\api\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Men\Desktop\Dev\Teste_Inhalt\api\bin\Debug\netcoreapp3.1\MySqlConnector.dll
+C:\Users\Men\Desktop\Dev\Teste_Inhalt\api\bin\Debug\netcoreapp3.1\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\Men\Desktop\Dev\Teste_Inhalt\api\bin\Debug\netcoreapp3.1\Pomelo.JsonObject.dll
+C:\Users\Men\Desktop\Dev\Teste_Inhalt\api\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll

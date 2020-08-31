@@ -23,12 +23,14 @@ namespace api.Controllers
             [FromBody] Product model
             )
         {
+            //Verificação se dados seguem de acordo com o model
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var products = await context.Products.Where(x => x.userId == User.Identity.Name && x.name.Contains(model.name)).ToListAsync();
+            //listar produtos pelo nome
+            var products = await context.product.Where(x => x.name.Contains(model.name)).ToListAsync();
             return products;
         }
     }

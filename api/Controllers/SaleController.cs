@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -23,31 +24,37 @@ namespace api.Controllers
             int productId
             )
         {
+            //Verificação dos dados estão de acordo com o model
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var product = await context.Products.Where(x => x.id == productId).SingleOrDefaultAsync();
+            var product = await context.product.Where(x => x.id == productId).SingleOrDefaultAsync();
+
+            //verificar se produto existe no banco de dados
             if (product == null)
             {
                 return NotFound(new { message = "Produto solicitado não encontrado!" });
             }
 
-            if(product.amount == 0){
+            //Não permitir fazer vendo se amount for igual a zero
+            if (product.amount == 0)
+            {
                 return NotFound(new { message = "Não é possivel vender um produto que não tenha estoque!" });
             }
 
+            //atualizar quantidade de amount do produto
             product.amount -= model.amount;
 
             Sale info = new Sale()
             {
                 productId = productId,
                 amount = model.amount,
-                userId = User.Identity.Name
+                userId = Int32.Parse(User.Identity.Name)
             };
 
-            context.Sales.Add(info);
+            context.sale.Add(info);
             await context.SaveChangesAsync();
             return info;
         }
@@ -57,7 +64,8 @@ namespace api.Controllers
         [Authorize]
         public async Task<ActionResult<List<Sale>>> Get([FromServices] DataContext context)
         {
-            var sale = await context.Sales.Where(x => x.userId == User.Identity.Name).ToListAsync();
+            //Listar todas as compras feitas
+            var sale = await context.sale.ToListAsync();
             return sale;
         }
     }

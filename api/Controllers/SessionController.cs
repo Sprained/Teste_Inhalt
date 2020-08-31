@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using BC = BCrypt.Net.BCrypt;
 
 using api.Data;
 using api.Models;
@@ -23,16 +24,12 @@ namespace api.Controllers
             [FromBody] User model
             )
         {
-            var user = await context.Users.FirstOrDefaultAsync(x => x.name == model.name);
+            var user = await context.user.FirstOrDefaultAsync(x => x.name == model.name);
 
-            if (user == null)
+            //verificar se usuario existe e se as senhas batem
+            if (user == null && BC.Verify(model.password, user.password))
             {
                 return NotFound(new { message = "Usuário ou senha invalidos!" });
-            }
-
-            if (model.password != user.password)
-            {
-                return new { message = "Usuário ou senha invalidos!" };
             }
 
             var token = Token.GenerateToken(user);

@@ -10,8 +10,10 @@ namespace api.Data
 
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Sale> Sales { get; set; }
+        public DbSet<User> user { get; set; }
+        public DbSet<Product> product { get; set; }
+        public DbSet<Sale> sale { get; set; }
+        public DbSet<Provider> provider { get; set; }
+        public DbSet<Brand> brand { get; set; }
     }
 }

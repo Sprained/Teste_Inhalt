@@ -10,12 +10,13 @@ namespace api.Models
         [Required(ErrorMessage = "Campo de nome do produto é obrigatorio!")]
         public string name { get; set; }
 
-        public string value { get; set; }
+        public float value { get; set; }
 
         public int amount { get; set; }
 
-        public string userId { get; set; }
+        [Required(ErrorMessage = "ID da marca é obrigatorio!")]
+        public int brandId { get; set; }
 
-        public User user { get; set; }
+        public Brand brand { get; set; }
     }
 }

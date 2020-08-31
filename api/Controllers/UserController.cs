@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using api.Data;
 using api.Models;
+using BC = BCrypt.Net.BCrypt;
 
 namespace api.Controllers
 {
@@ -16,13 +17,13 @@ namespace api.Controllers
         [Route("")]
         public async Task<ActionResult<List<User>>> Get([FromServices] DataContext context)
         {
-            var users = await context.Users.ToListAsync();
+            var users = await context.user.ToListAsync();
             return users;
         }
 
         [HttpPost]
         [Route("")]
-        [Authorize]
+        // [Authorize]
         public async Task<ActionResult<User>> Post(
             [FromServices] DataContext context,
             [FromBody] User model
@@ -33,7 +34,12 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
-            context.Users.Add(model);
+            User user = new User(){
+                name = model.name,
+                password = BC.HashPassword(model.password)
+            };
+
+            context.user.Add(user);
             await context.SaveChangesAsync();
             return model;
         }
