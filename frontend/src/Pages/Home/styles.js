@@ -100,3 +100,16 @@ export const Divisor = styled.div`
         cursor: pointer;
     }
 `
+
+export const EditButton = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: -30px;
+
+    button{
+        border: none;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
+`

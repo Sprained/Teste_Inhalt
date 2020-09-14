@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
+import { Form, Input } from '@rocketseat/unform';
+import * as Yup from 'yup';
 
 import {
     Container
 } from './styles';
 
 import api from '../../Services/api';
+
+const schema = Yup.object().shape({
+    name: Yup.string()
+        .required('Campo de usuario é obrigatório!'),
+    password: Yup.string()
+        .required('Campo de valor é obrigatório!')
+});
 
 export default function AddUser(){
     const [name, setName] = useState('');
@@ -19,7 +28,8 @@ export default function AddUser(){
         
         const info = {
             name,
-            password
+            password,
+            confirm_password: password
         }
         
         await api.post('/users', info).then(resp => {
@@ -31,7 +41,7 @@ export default function AddUser(){
 
     return(
         <Container>
-            <form>
+            <Form schema={schema} onSubmit={addUser}>
                 <div>
                     <label>Usuario</label>
                     <input
@@ -46,8 +56,8 @@ export default function AddUser(){
                     />
                 </div>
 
-                <button onClick={() => addUser()}>Cadastrar</button>
-            </form>
+                <button type='submit'>Cadastrar</button>
+            </Form>
         </Container>
     )
 }

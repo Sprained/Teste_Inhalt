@@ -6,7 +6,7 @@ import { MdClose } from 'react-icons/md';
 
 import api from '../../Services/api';
 
-import { pointMask } from '../../Utils/mask'
+import { coinMask, numMask } from '../../Utils/mask';
 
 import {
     Container,
@@ -18,10 +18,10 @@ import {
     FlexContainer
 } from './styles';
 
-function Sale(props){
+function Edit(props){
     const dispatch = useDispatch();
     const [amount, setAmount] = useState(1);
-    const [item, setItem] = useState({});
+    const [name, setName] = useState({});
     const [value, setValue] = useState();
 
     useEffect(() => {
@@ -30,8 +30,9 @@ function Sale(props){
 
     const requestItem = async () => {
         await api.get(`/product/${props.id}`).then(resp => {
-            setItem(resp.data[0]);
-            setValue(parseFloat(pointMask(resp.data[0].value)))
+            setName(resp.data[0].name);
+            setValue(resp.data[0].value)
+            setAmount(resp.data[0].amount)
         }).catch(err => {
             console.log(err.response);
         });
@@ -39,19 +40,22 @@ function Sale(props){
 
     const closeModal = () => {
         dispatch({
-            type: 'MODAL_CLOSE'
+            type: 'EDIT_CLOSE'
         })
     }
 
-    const sale = async () => {
+    const att = async () => {
         const info = {
+            name,
+            value: parseFloat(value),
             amount: parseInt(amount)
         }
-        await api.post(`/sale/${props.id}`, info).then(resp => {
-            alert('Compra realizada com sucesso!');
+        await api.put(`/product/${props.id}`, info).then(resp => {
+            alert('Atualização realizada com sucesso!');
             closeModal();
         }).catch(err => {
             alert(err.response.data.message);
+            console.log(err.response)
         });
     }
 
@@ -74,22 +78,30 @@ function Sale(props){
                                 </CloseButton>
 
                                 <FlexContainer>
-                                    <h2>{item.name}</h2>
-                                    <h1>Valor Total</h1>
-                                    <p>R$ {amount * item.value}</p>
-                                    <p>Valor Unitario: {item.value}</p>
+                                    <label>Nome do Produto</label>
+                                    <input
+                                        value={name}
+                                        onChange={e => setName(e.target.value)}
+                                    />
+                                    <label>Estoque</label>
                                     <input
                                         value={amount}
-                                        onChange={e => setAmount(e.target.value)}
+                                        onChange={e => setAmount(numMask(e.target.value))}
                                         type='number'
                                     />
+                                    <label>Preço do Produto</label>
+                                    <input
+                                        value={value}
+                                        onChange={e => setValue(coinMask(e.target.value))}
+                                    />
+                                    
                                 </FlexContainer>
 
                                 <ButtonContainer>
                                     <SaleButton
-                                        onClick={() => sale()}
+                                        onClick={() => att()}
                                     >
-                                        Realizar Compra!
+                                        Atualizar!
                                     </SaleButton>
                                 </ButtonContainer>
                             </InternContainer>
@@ -104,8 +116,8 @@ function Sale(props){
 }
 
 const mapStateToProps = state => ({
-    modalOpen: state.modal[0],
-    id: state.modal[1]
+    modalOpen: state.edit[0],
+    id: state.edit[1]
 });
 
-export default connect(mapStateToProps)(Sale)
+export default connect(mapStateToProps)(Edit)

@@ -12,11 +12,11 @@ import {
 const schema = Yup.object().shape({
     name: Yup.string()
         .required('Campo de usuario é obrigatório!'),
-        password: Yup.string()
+    password: Yup.string()
         .required('Campo de senha é obrigatório!')
 });
 
-export default function Login(){
+export default function Login() {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
 
@@ -29,14 +29,16 @@ export default function Login(){
     const userLogged = () => {
         const token = localStorage.getItem('inhalt-token');
 
-        if(token){
+        if (token) {
             api.defaults.headers.authorization = `Bearer ${token}`;
             return history.push('/home');
         }
     }
 
     const handleLogin = async () => {
-        const info = { name, password };
+        // const pass = password.toString();
+        const confirm_password = password;
+        const info = { name, password, confirm_password };
 
         await api.post('/session', info).then(resp => {
             api.defaults.headers.authorization = `Bearer ${resp.data.token}`;
@@ -45,44 +47,36 @@ export default function Login(){
 
             history.push('/home');
 
-            window.location.reload(); 
+            window.location.reload();
 
             setName('');
             setPassword('');
         }).catch(err => {
             alert(err.response.data.message);
+            // console.log(err.response.data.errors);
         });
     }
 
-    const handelTest = async () => {
-        await api.post('/teste').catch(err => {
-            alert(err.response.data.message);
-        })
-    }
-
-    return(
+    return (
         <Container>
             <Form schema={schema} onSubmit={handleLogin}>
                 <div>
                     <label>Usuario</label>
-                    <Input 
-                        value={name} 
-                        onChange={text => setName(text.target.value)} 
+                    <Input
+                        value={name}
+                        onChange={text => setName(text.target.value)}
                         name='name'
                     />
                 </div>
 
                 <div>
                     <label>Senha</label>
-                    <Input 
-                        value={password} 
-                        onChange={text => setPassword(text.target.value)} 
+                    <Input
+                        value={password}
+                        onChange={text => setPassword(text.target.value)}
                         name='password'
+                        type='password'
                     />
-                </div>
-
-                <div>
-                    <a onClick={handelTest}>Teste</a>
                 </div>
 
                 <button type='submit'>Logar</button>

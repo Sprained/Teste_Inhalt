@@ -3,14 +3,17 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import { FaHome } from 'react-icons/fa';
-import { AiFillCalendar } from 'react-icons/ai';
+import { AiFillCalendar, AiFillProfile } from 'react-icons/ai';
 import { GiExitDoor } from 'react-icons/gi';
 import { RiUserAddFill, RiFileAddFill } from 'react-icons/ri';
+import { SiBrandfolder } from 'react-icons/si';
 
 import {
     Container,
     MenuContainer
 } from './styles';
+
+import api from '../../Services/api';
 
 export default function Sidebar(){
     const history = useHistory();
@@ -21,6 +24,15 @@ export default function Sidebar(){
         history.push('/');
 
         window.location.reload(); 
+    }
+
+    const report = async () => {
+        await api.get('/sale').then(resp => {
+            window.open(resp.data);
+            console.log(resp.data)
+        }).catch(err => {
+            console.log(err.response)
+        })
     }
 
     return(
@@ -35,10 +47,21 @@ export default function Sidebar(){
                         <AiFillCalendar color='#424242' size={20}/>
                         Relatório
                     </li>
+                    <li onClick={() => history.push('/provider')}>
+                        <AiFillProfile color='#424242' size={20}/>
+                        Novo Fornecedor
+                    </li>
+                    <li onClick={() => history.push('/brand')}>
+                        <SiBrandfolder color='#424242' size={20}/>
+                        Nova Marca
+                    </li>
                     <li onClick={() => history.push('/item')}>
                         <RiFileAddFill color='#424242' size={20}/>
                         Novo Produto
                     </li>
+                    {/* <li onClick={() => report()}>
+                        Relatorio
+                    </li> */}
                     <li onClick={() => history.push('/user')}>
                         <RiUserAddFill color='#424242' size={20}/>
                         Novo Usuario

@@ -3,10 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 
 import { IoIosSearch } from 'react-icons/io';
+import { AiFillEdit } from 'react-icons/ai';
 
 import api from '../../Services/api';
 
 import Sale from '../Sale/sale';
+import Edit from '../Edit/edit';
 
 import {
     Container,
@@ -14,7 +16,8 @@ import {
     SearchCamp,
     Card,
     Divisor,
-    CardContainer
+    CardContainer,
+    EditButton
 } from './styles';
 
 function Home(props){
@@ -30,7 +33,7 @@ function Home(props){
         else {
             filterItens();
         }
-    }, [filter, props.modalOpen])
+    }, [filter, props.modalOpen, props.edit])
 
     const userLogged = () => {
         const token = localStorage.getItem('inhalt-token');
@@ -66,6 +69,13 @@ function Home(props){
             id
         })
     }
+    
+    const editItem = (id) => {
+        dispatch({
+            type: 'EDIT',
+            id
+        })
+    }
 
     return(
         <>
@@ -93,6 +103,16 @@ function Home(props){
                     {
                         itens.map(item => 
                             <Card key={item.id}>
+                                <EditButton
+                                    onClick={() => editItem(item.id)}
+                                >
+                                    <button>
+                                        <AiFillEdit
+                                            color='#000'  
+                                            size={25} 
+                                        />
+                                    </button>
+                                </EditButton>
                                 <h5>{item.name}</h5>
                                 <Divisor>
                                     <div>
@@ -119,11 +139,19 @@ function Home(props){
                     null
                 )
             }
+            {
+                props.edit ? (
+                    <Edit/>
+                ) : (
+                    null
+                )
+            }
         </>
     )
 }
 const mapStateToProps = state => ({
-    modalOpen: state.modal[0]
+    modalOpen: state.modal[0],
+    edit: state.edit[0]
 });
 
 export default connect(mapStateToProps)(Home)
