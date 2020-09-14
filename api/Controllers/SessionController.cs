@@ -27,7 +27,7 @@ namespace api.Controllers
             var user = await context.user.FirstOrDefaultAsync(x => x.name == model.name);
             
             //verificar se usuario existe e se as senhas batem
-            if (user == null && BC.Verify(model.password, user.password))
+            if (user == null || !(BC.Verify(model.password, user.password)))
             {
                 return NotFound(new { message = "Usuário ou senha invalidos!" });
             }
