@@ -34,18 +34,13 @@ Tendo o DOTNET SDK instalado na máquina, abra o terminal na pasta e digite o se
 FRONT-END
 Tendo o NodeJs instalado na máquina, abra o terminal na pasta e digite o seguinte comando `npm i` ou `yarn` para atualizar as dependências e `npm start` ou `yarn start` para iniciar a aplicação.
 
-Por motivos do banco de dados InMemory perder todos os dados após finalizar a aplicação, ao iniciar, por hora, o usuário deverá clicar num link, na página principal do sistema, escrito 'Teste', a fim de que o banco possa ser populado para uso. 
-
-Para logar na aplicação na primeira vez utilize as credenciais: 
-Login: teste
-Senha: teste@123
+BANCO DE DADOS
+Tendo o banco de dados MySQL basta importar o arquivo `inhalt_teste.sql`, assim importara toda a base de dados.
 
 ## Comentarios de desenvolvimento
 
 ##### API
 Foram desenvolvidos na API os requisitos solicitados, com exceção da emissão do relatório para visualização dos itens vendidos com totalização.
-
-A lógica para os relatórios era pegar as informações do banco de dados tratar a mesma num json, criando um array de cabeçalho servindo como filtro também para mostrar somente o solicitado e assim criando o arquivo num `fs.write` e disponibilizando um link onde o frontend iria requisitar o mesmo e assim retornar o arquivo para download, uma vez que a utilizei em um projeto em NodeJS que fiz. Porém, a lógica do Node não se encaixou muito bem com o ASP.NET Core, e eu tinha receio de não ter tempo hábil para estudar e pensar numa solução cabível.
 
 No geral, a expectativa para o desenvolvimento da API não era tão boa, por não ter experiência no desenvolvimento com ASP.NET Core, porém consegui aprender e me adaptar mais rápido que esperava e entregar uma ótima parte da aplicação a tempo.
 
